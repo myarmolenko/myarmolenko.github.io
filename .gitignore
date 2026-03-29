@@ -1,0 +1,69 @@
+# =========================
+# Dependencies
+# =========================
+node_modules/
+
+# =========================
+# Build output
+# =========================
+.build/
+.svelte-kit/
+dist/
+build/
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# OS / Editor files
+# =========================
+.DS_Store
+Thumbs.db
+
+# Vim
+*.swp
+*.swo
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+
+# IntelliJ / WebStorm
+.idea/
+
+# =========================
+# Cache / tooling
+# =========================
+.eslintcache
+.prettier-cache
+.turbo/
+.cache/
+tmp/
+temp/
+
+# =========================
+# Playwright / Vitest (if added later)
+# =========================
+test-results/
+playwright-report/
+coverage/
+
+# =========================
+# Optional
+# =========================
+*.local
+CLAUDE.md
+.claude/
