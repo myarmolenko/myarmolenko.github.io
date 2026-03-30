@@ -2,14 +2,22 @@
 	import { page } from '$app/state';
 	import type { NavigationLink } from './types';
 	import { defaultNavigationLinks, isActive } from './types';
+	import ThemeToggle from './ThemeToggle.svelte';
 
-	export let navigationLinks: readonly NavigationLink[] = defaultNavigationLinks;
+	let {
+		navigationLinks = defaultNavigationLinks,
+		class: className = ''
+	}: {
+		navigationLinks?: readonly NavigationLink[];
+		class?: string;
+	} = $props();
 </script>
 
-<nav class={`nav ${$$props.class ?? ''}`} aria-label="Primary navigation">
+<nav class={`nav ${className}`} aria-label="Primary navigation">
 	<ul class="nav__list" role="list">
 		{#each navigationLinks as link (link.href)}
 			{@const active = isActive(link.href, page.url.pathname)}
+			{@const Icon = link.icon}
 			<li>
 				<a
 					class="nav__link"
@@ -19,24 +27,14 @@
 					rel={link.target === '_blank' ? link.rel ?? 'noopener noreferrer' : link.rel}
 					aria-current={active ? 'page' : undefined}
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						aria-hidden="true"
-					>
-						<path d={link.icon} />
-					</svg>
+					<Icon />
 					{#if active}
 						<span class="nav__label">{link.name}</span>
 					{/if}
 				</a>
 			</li>
 		{/each}
+		<li class="nav__toggle"><ThemeToggle /></li>
 	</ul>
 </nav>
 
@@ -74,9 +72,15 @@
 		text-decoration-thickness: 2px;
 	}
 
-	svg {
+	a :global(svg) {
 		width: 20px;
 		height: 20px;
 		flex-shrink: 0;
+	}
+
+	.nav__toggle {
+		display: flex;
+		align-items: center;
+		padding: 6px 8px;
 	}
 </style>

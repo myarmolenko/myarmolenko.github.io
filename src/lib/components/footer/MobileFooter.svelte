@@ -1,18 +1,30 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { SocialLink } from './types';
 	import { defaultSocials } from './types';
 
-	export let year = 2026;
-	export let owner = 'Maksym Yarmolenko';
-	export let socials: readonly SocialLink[] = defaultSocials;
+	let {
+		year = 2026,
+		owner = 'Maksym Yarmolenko',
+		socials = defaultSocials,
+		middle,
+		class: className = ''
+	}: {
+		year?: number;
+		owner?: string;
+		socials?: readonly SocialLink[];
+		middle?: Snippet;
+		class?: string;
+	} = $props();
 </script>
 
-<footer class={`footer ${$$props.class ?? ''}`} aria-label="Footer">
+<footer class={`footer ${className}`} aria-label="Footer">
 	<div class="footer__inner container">
-		<!-- First line: Social icons + middle slot -->
+		<!-- First line: Social icons + middle snippet -->
 		<div class="footer__top">
 			<div class="footer__socials" aria-label="Social links">
 				{#each socials as s (s.href)}
+					{@const Icon = s.icon}
 					<a
 						class="footer__iconLink"
 						href={s.href}
@@ -21,13 +33,13 @@
 						aria-label={s.label ?? s.name}
 						title={s.label ?? s.name}
 					>
-						<img src={s.icon} alt="" class="footer__icon" aria-hidden="true" />
+						<Icon />
 					</a>
 				{/each}
 			</div>
 
 			<div class="footer__middle">
-				<slot name="middle" />
+				{@render middle?.()}
 			</div>
 		</div>
 
@@ -78,19 +90,12 @@
 	}
 
 	.footer__iconLink:hover {
-		background-color: rgba(0, 0, 0, 0.05);
+		background-color: var(--code-bg);
 	}
 
 	.footer__iconLink:focus-visible {
 		outline: 2px solid currentColor;
 		outline-offset: 4px;
-	}
-
-	.footer__icon {
-		width: 20px;
-		height: 20px;
-		filter: none;
-		color: var(--text-color);
 	}
 
 	.footer__copyright {

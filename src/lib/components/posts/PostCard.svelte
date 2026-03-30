@@ -42,13 +42,13 @@
 	.post-card {
 		position: relative;
 		padding: var(--space-4);
-		background: rgba(255, 255, 255, 0.4);
+		background: var(--card-bg);
 		border-radius: var(--border-radius-md);
 		transition: all var(--transition-base);
 	}
 
 	.post-card:hover {
-		background: rgba(255, 255, 255, 0.6);
+		background: var(--card-bg-hover);
 		transform: translateY(-2px);
 		box-shadow: var(--shadow-md);
 	}

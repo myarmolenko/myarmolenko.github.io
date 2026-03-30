@@ -2,14 +2,22 @@
 	import { page } from '$app/state';
 	import type { NavigationLink } from './types';
 	import { defaultNavigationLinks, isActive } from './types';
+	import ThemeToggle from './ThemeToggle.svelte';
 
-	export let navigationLinks: readonly NavigationLink[] = defaultNavigationLinks;
+	let {
+		navigationLinks = defaultNavigationLinks,
+		class: className = ''
+	}: {
+		navigationLinks?: readonly NavigationLink[];
+		class?: string;
+	} = $props();
 </script>
 
-<nav class="nav {$$props.class}" aria-label="Primary navigation">
+<nav class={`nav ${className}`} aria-label="Primary navigation">
 	<div class="nav__container container">
 		<ul class="nav__list">
 			{#each navigationLinks as link (link.href)}
+				{@const Icon = link.icon}
 				<li>
 					<a
 						href={link.href}
@@ -18,22 +26,12 @@
 						class:active={isActive(link.href, page.url.pathname)}
 						aria-current={isActive(link.href, page.url.pathname) ? 'page' : undefined}
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							aria-hidden="true"
-						>
-							<path d={link.icon} />
-						</svg>
+						<Icon />
 						{link.name}
 					</a>
 				</li>
 			{/each}
+			<li><ThemeToggle /></li>
 		</ul>
 	</div>
 </nav>
@@ -68,7 +66,7 @@
 		letter-spacing: 0.2px;
 	}
 
-	svg {
+	a :global(svg) {
 		width: 18px;
 		height: 18px;
 		flex-shrink: 0;

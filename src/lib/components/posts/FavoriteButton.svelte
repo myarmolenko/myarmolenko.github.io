@@ -1,4 +1,6 @@
 <script lang="ts">
+	import StarIcon from '$lib/icons/StarIcon.svelte';
+
 	let { slug, favorited, ontoggle }: {
 		slug: string;
 		favorited: boolean;
@@ -38,9 +40,7 @@
 	aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
 	onclick={ontoggle}
 >
-	<svg class="star-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-		<polygon points={starPoints} />
-	</svg>
+	<StarIcon points={starPoints} filled={favorited} />
 </button>
 
 <style>
@@ -55,14 +55,4 @@
 		line-height: 0;
 	}
 
-	.star-icon {
-		fill: none;
-		stroke: currentColor;
-		stroke-width: 1.5;
-		stroke-linejoin: round;
-	}
-
-	.star-btn.filled .star-icon {
-		fill: currentColor;
-	}
 </style>
