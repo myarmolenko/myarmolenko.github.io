@@ -1,11 +1,12 @@
-import linkedinIcon from '$lib/assets/icons/linkedin.svg';
-import githubIcon from '$lib/assets/icons/github.svg';
-import emailIcon from '$lib/assets/icons/email.svg';
+import type { Component } from 'svelte';
+import GithubIcon from '$lib/icons/GithubIcon.svelte';
+import EmailIcon from '$lib/icons/EmailIcon.svelte';
+import LinkedInIcon from '$lib/icons/LinkedInIcon.svelte';
 
 export type SocialLink = Readonly<{
 	name: string;
 	href: string;
-	icon: string;
+	icon: Component;
 	label?: string;
 }>;
 
@@ -13,16 +14,16 @@ export const defaultSocials: readonly SocialLink[] = [
 	{
 		name: 'LinkedIn',
 		href: 'https://www.linkedin.com/in/maksym-yarmolenko/',
-		icon: linkedinIcon
+		icon: LinkedInIcon
 	},
 	{
 		name: 'GitHub',
 		href: 'https://github.com/myarmolenko',
-		icon: githubIcon
+		icon: GithubIcon
 	},
 	{
 		name: 'Email',
 		href: 'mailto:maksymyarmolenk@gmail.com',
-		icon: emailIcon
+		icon: EmailIcon
 	}
 ];

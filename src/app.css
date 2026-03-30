@@ -9,6 +9,21 @@
     --link-color: var(--text-color);
     --link-hover-color: #000000;
 
+    /* Code block background */
+    --code-bg: rgba(0, 0, 0, 0.05);
+
+    /* Card backgrounds */
+    --card-bg: rgba(255, 255, 255, 0.4);
+    --card-bg-hover: rgba(255, 255, 255, 0.6);
+
+    /* Post type badge colors */
+    --badge-note-bg: rgba(74, 111, 165, 0.1);
+    --badge-note-color: #3a5e96;
+    --badge-note-border: rgba(74, 111, 165, 0.4);
+    --badge-post-bg: rgba(85, 120, 70, 0.1);
+    --badge-post-color: #4a7038;
+    --badge-post-border: rgba(85, 120, 70, 0.4);
+
     /* Dot pattern (preserve existing) */
     --dot-color: rgba(100, 100, 100, 0.3);
     --dot-radius: 1px;
@@ -125,6 +140,7 @@ body {
 	background-size: var(--grid-spacing) var(--grid-spacing);
 	color: var(--text-color);
 	letter-spacing: var(--letter-spacing-body);
+	transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 .desktop { display: none; }
@@ -331,7 +347,7 @@ img {
     font-family: var(--font-mono);
     font-size: 0.9em;
     padding: 0.125em 0.25em;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--code-bg);
     border-radius: var(--border-radius-sm);
 }
 
@@ -341,7 +357,7 @@ img {
     line-height: var(--line-height-relaxed);
     padding: var(--space-3);
     margin: var(--space-4) 0;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--code-bg);
     border-radius: var(--border-radius-md);
     overflow-x: auto;
 }
@@ -376,6 +392,31 @@ img {
 .prose > h2:first-child,
 .prose > h3:first-child {
     margin-top: 0;
+}
+
+/* ===== Dark Theme ===== */
+
+[data-theme="dark"] {
+    --bg-color: #1e1c1a;
+    --text-color: #e8e4dc;
+    --text-color-secondary: #a09a90;
+    --text-color-muted: #706a62;
+    --link-color: var(--text-color);
+    --link-hover-color: #f5f0e8;
+    --dot-color: rgba(210, 200, 185, 0.1);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --code-bg: rgba(255, 255, 255, 0.07);
+    --card-bg: rgba(255, 248, 235, 0.06);
+    --card-bg-hover: rgba(255, 248, 235, 0.11);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    --badge-note-bg: rgba(90, 130, 195, 0.15);
+    --badge-note-color: #7a9fd4;
+    --badge-note-border: rgba(90, 130, 195, 0.4);
+    --badge-post-bg: rgba(120, 170, 90, 0.15);
+    --badge-post-color: #8ab56b;
+    --badge-post-border: rgba(120, 170, 90, 0.4);
 }
 
 /* Screen reader only utility */

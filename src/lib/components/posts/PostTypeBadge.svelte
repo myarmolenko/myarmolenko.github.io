@@ -32,16 +32,16 @@
 
 	/* note — slate blue */
 	.post-type.note {
-		background: rgba(74, 111, 165, 0.1);
-		color: #3a5e96;
-		--badge-border: rgba(74, 111, 165, 0.4);
+		background: var(--badge-note-bg);
+		color: var(--badge-note-color);
+		--badge-border: var(--badge-note-border);
 	}
 
 	/* post — olive green */
 	.post-type.post {
-		background: rgba(85, 120, 70, 0.1);
-		color: #4a7038;
-		--badge-border: rgba(85, 120, 70, 0.4);
+		background: var(--badge-post-bg);
+		color: var(--badge-post-color);
+		--badge-border: var(--badge-post-border);
 	}
 
 	.post-type.lg {
@@ -63,4 +63,5 @@
 	.post-type.lg::before {
 		border-radius: 6px;
 	}
+
 </style>
